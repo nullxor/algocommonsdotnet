@@ -15,7 +15,7 @@ namespace ConsoleTests
         static void Main(string[] args)
         {
             int[] array = { 3, 8, 5, 17, 13, 25 };
-            HeapBase<int> heap = new MaxHeap<int>(array);
+            HeapBase<int> heap = new MinHeap<int>(array);
 
             array = heap.ToArray();
             for (int i = 0; i < array.Length; i++)

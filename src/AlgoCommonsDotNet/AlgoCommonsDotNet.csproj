@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DataStructures\Generic\Trees\HeapBase.cs" />
     <Compile Include="DataStructures\Generic\Trees\MaxHeap.cs" />
+    <Compile Include="DataStructures\Generic\Trees\MinHeap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

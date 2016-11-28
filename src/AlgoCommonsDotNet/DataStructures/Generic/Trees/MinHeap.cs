@@ -6,14 +6,14 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
     /// Implementation of a MaxHeap data structure
     /// </summary>
     /// <typeparam name="T">Data type, it must implements the IComparable interface</typeparam>
-    public class MaxHeap<T> : HeapBase<T> where T : IComparable
+    public class MinHeap<T> : HeapBase<T> where T : IComparable
     {
-        public MaxHeap(T[] array) : base(array)
+        public MinHeap(T[] array) : base(array)
         {
         }
 
         /// <summary>
-        /// In this case this checks if _heap[index1] > _heap[index2]
+        /// In this case this checks if _heap[index1] < _heap[index2]
         /// because it's MaxHeap
         /// </summary>
         /// <param name="index1">Index 1</param>
@@ -28,10 +28,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 
             if (index1 < _heap.Count)
             {
-                return _heap[index1].CompareTo(_heap[index2]) > 0;
+                return _heap[index1].CompareTo(_heap[index2]) < 0;
             }
 
             return false;
         }
     }
 }
+
