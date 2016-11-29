@@ -1,4 +1,4 @@
-## Implementations of some of the Algorithms and Data Structures mainly from the MIT 6.006 OCW and the CLRS Book
+## Implementations of common Algorithms and Data Structures mainly from the MIT 6.006 OCW and the CLRS Book
 
 ### Description
 Implementations in .NET of a few Algorithms and Data Structures. With a brief description of each Algorithm / Data Structure in the code comments.
