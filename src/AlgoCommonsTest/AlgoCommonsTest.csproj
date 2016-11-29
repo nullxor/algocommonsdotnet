@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructures\Generic\Trees\MaxHeapTests.cs" />
+    <Compile Include="DataStructures\Generic\Trees\MinHeapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
