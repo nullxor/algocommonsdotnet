@@ -9,7 +9,7 @@ These implementations are for fun / learning purposes and even though I'm trying
 ### Tools and Resources
 ##### Free
 * [VisualStudio.gitignore](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore)
-* [MIT 6.006 Lecture Videos](url[https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/])
+* [MIT 6.006 Lecture Videos]([https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/])
 * [Problem Solving with Algorithms and Data Structures using Python](http://interactivepython.org/runestone/static/pythonds/index.html)
 
 ##### Paid resources
