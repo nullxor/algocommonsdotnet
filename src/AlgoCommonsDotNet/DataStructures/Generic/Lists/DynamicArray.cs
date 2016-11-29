@@ -79,6 +79,31 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
         }
 
         /// <summary>
+        /// Inserts the item in the array at the given index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="item">Item to insert</param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public void InsertAt(int index, T item)
+        {
+            if (_length > 0)
+            {
+                CheckIndex(index);
+            }
+
+            _length++;
+            EnsureCapacity();
+
+            //Move the rest of the items upwards starting from the end to the index O(n)
+            for (int i = _length - 1; i > index; i--)
+            {
+                _buffer[i] = _buffer[i-1];
+            }
+
+            _buffer[index] = item;
+        }
+
+        /// <summary>
         /// Removes the item based on the given index
         /// </summary>
         /// <param name="index">Index</param>
@@ -92,8 +117,8 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
             _length--;
 
             //We don't really remove the item from memory, we just erase it from the
-            //buffer and starting from the index we've just "removed" we move the items
-            //one position to the left in the buffer.
+            //buffer and starting from the index we've just "removed" we move the rest of
+            //the items one position to the left in the buffer.
             //For instance, if we have the buffer [0,1,2,3,4,5,0,0,0...] in this case
             //if whe remove 3 (index 3) then the new buffer would be [0,1,2,4,5,0,0,0...]
             for (int i = index; i < _length; i++)

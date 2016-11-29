@@ -32,7 +32,14 @@ namespace AlgoCommonsTest.DataStructures.Generic.Arrays
         }
 
         [TestMethod]
-        public void ShouldReturnTheCorrectItemAfterDeletion()
+        public void ShouldInsertCorrectly()
+        {
+            _dynamicArray.InsertAt(0, 100);
+            Assert.AreEqual(_dynamicArray[0], 100);
+        }
+
+        [TestMethod]
+        public void ShouldRemoveCorrectly()
         {
             var item = _dynamicArray.RemoveAt(25);
 
@@ -44,7 +51,7 @@ namespace AlgoCommonsTest.DataStructures.Generic.Arrays
         public void ShouldReturnTheCorrectLengthAfterInsertion()
         {
             _dynamicArray.Add(51);
-            _dynamicArray.Add(52);
+            _dynamicArray.InsertAt(0, -1);
             Assert.AreEqual(TestLength + 2, _dynamicArray.Length);
         }
 

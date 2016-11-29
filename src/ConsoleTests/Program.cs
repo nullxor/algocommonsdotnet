@@ -16,12 +16,7 @@ namespace ConsoleTests
         {
             DynamicArray<int> array = new DynamicArray<int>();
 
-            for (int i = 0; i < 50; i++)
-            {
-                array.Add(i);
-            }
-
-            Console.WriteLine(array.RemoveAt(array.Length - 1));
+            array.InsertAt(0, -1);
 
             for (int i = 0; i < array.Length; i++)
             {
