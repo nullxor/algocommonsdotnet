@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Sorting\BubbleSort.cs" />
+    <Compile Include="Algorithms\Sorting\SortBase.cs" />
     <Compile Include="DataStructures\Generic\Lists\DynamicArray.cs" />
     <Compile Include="DataStructures\Generic\Trees\HeapBase.cs" />
     <Compile Include="DataStructures\Generic\Trees\MaxHeap.cs" />
