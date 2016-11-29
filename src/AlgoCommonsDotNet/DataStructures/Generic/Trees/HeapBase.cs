@@ -15,7 +15,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
     /// </summary>
     public abstract class HeapBase<T> where T : IComparable
     {
-        //Dynamic array representation of the Heap
+        //Dynamic array, representation of the Heap
         protected List<T> _heap;
 
         public int Count { get { return _heap.Count; } }
@@ -39,7 +39,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
         }
 
         /// <summary>
-        /// Array representation of the heap, just for test purposes
+        /// Array representation of the heap, just for testing purposes
         /// </summary>
         public T[] ToArray()
         {
@@ -50,7 +50,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
         protected abstract bool GreaterOrLower(int index1, int index2);
 
         /// <summary>
-        /// Add a new element to the next spot available and rearranges the Heap
+        /// Add a new element to the next spot available, rearranges the Heap
         /// and check the heap upwards
         /// </summary>
         /// <param name="element">Element</param>
