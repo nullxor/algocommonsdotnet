@@ -53,6 +53,10 @@
       <Project>{0a85baf9-a6f4-4b69-9b63-17cf7a875a5a}</Project>
       <Name>AlgoCommonsDotNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AlgoCommonsTest\AlgoCommonsTest.csproj">
+      <Project>{b9c6d056-072c-4d2b-b649-98198d9211b3}</Project>
+      <Name>AlgoCommonsTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

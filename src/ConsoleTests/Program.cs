@@ -1,5 +1,6 @@
 ﻿using AlgoCommonsDotNet.Algorithms.Sorting;
 using AlgoCommonsDotNet.DataStructures.Generic.Lists;
+using AlgoCommonsTest.Algorithms.Sorting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace ConsoleTests
     {
         static void Main(string[] args)
         {
-            int[] array = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            int[] array = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 1 };
+            
             SortBase<int> sort = new BubbleSort<int>();
 
             sort.Sort(array, SortingOrder.Descending);
