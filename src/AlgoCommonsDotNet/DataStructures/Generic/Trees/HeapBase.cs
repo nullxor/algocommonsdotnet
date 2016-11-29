@@ -104,7 +104,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 
         /// <summary>
         /// Calculate the root index, in a Heap represented by a zero index array,
-        /// we can get it with the formula (childIndex / 2)
+        /// we can get it with the formula ((childIndex - 1) / 2)
         /// </summary>
         /// <param name="childIndex">Index of the child</param>
         /// <returns>Left index</returns>
