@@ -1,4 +1,4 @@
-﻿using AlgoCommonsDotNet.DataStructures.Generic.Trees;
+﻿using AlgoCommonsDotNet.DataStructures.Generic.Arrays;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +14,21 @@ namespace ConsoleTests
     {
         static void Main(string[] args)
         {
-            int[] array = { 3, 8, 5, 17, 13, 25 };
-            HeapBase<int> heap = new MinHeap<int>(array);
+            DynamicArray<int> array = new DynamicArray<int>();
 
-            array = heap.ToArray();
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < 50; i++)
             {
-                Console.WriteLine(heap.RemoveTop());
+                array.Add(i);
             }
 
-            Console.WriteLine("");
+            Console.WriteLine(array.RemoveAt(array.Length - 1));
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write("{0} ", array[i]);
+            }
+            Console.WriteLine();
+            Console.WriteLine(array.Length);
         }
     }
 }
