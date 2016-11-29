@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AlgoCommonsDotNet.DataStructures.Generic.Arrays;
+using AlgoCommonsDotNet.DataStructures.Generic.Lists;
 
 namespace AlgoCommonsTest.DataStructures.Generic.Arrays
 {

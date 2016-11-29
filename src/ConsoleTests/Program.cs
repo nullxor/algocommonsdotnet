@@ -1,4 +1,4 @@
-﻿using AlgoCommonsDotNet.DataStructures.Generic.Arrays;
+﻿using AlgoCommonsDotNet.DataStructures.Generic.Lists;
 using System;
 using System.Collections.Generic;
 using System.Linq;

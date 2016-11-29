@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStructures\Generic\Arrays\DynamicArray.cs" />
+    <Compile Include="DataStructures\Generic\Lists\DynamicArray.cs" />
     <Compile Include="DataStructures\Generic\Trees\HeapBase.cs" />
     <Compile Include="DataStructures\Generic\Trees\MaxHeap.cs" />
     <Compile Include="DataStructures\Generic\Trees\MinHeap.cs" />

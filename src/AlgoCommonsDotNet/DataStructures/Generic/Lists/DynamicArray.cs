@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgoCommonsDotNet.DataStructures.Generic.Arrays
+namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
 {
     /// <summary>
     /// In computer science, a dynamic array, growable array, resizable array, dynamic table,
