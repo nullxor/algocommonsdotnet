@@ -16,11 +16,11 @@ namespace ConsoleTests
     {
         static void Main(string[] args)
         {
-            int[] array = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 1 };
+            int[] array = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
             
-            SortBase<int> sort = new BubbleSort<int>();
+            SortBase<int> sort = new InsertionSort<int>();
 
-            sort.Sort(array, SortingOrder.Descending);
+            sort.Sort(array, SortingOrder.Ascending);
 
             for (int i = 0; i < array.Length; i++)
             {
