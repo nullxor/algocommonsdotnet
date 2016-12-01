@@ -53,6 +53,7 @@
     <Compile Include="Algorithms\Sorting\SortBaseTests.cs" />
     <Compile Include="Algorithms\Sorting\SortUtils.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSortTests.cs" />
+    <Compile Include="Algorithms\Sorting\InsertionSortTests.cs" />
     <Compile Include="DataStructures\Generic\Lists\DynamicArrayTests.cs" />
     <Compile Include="DataStructures\Generic\Trees\MaxHeapTests.cs" />
     <Compile Include="DataStructures\Generic\Trees\MinHeapTests.cs" />
