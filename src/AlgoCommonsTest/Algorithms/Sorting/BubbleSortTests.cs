@@ -6,15 +6,15 @@ namespace AlgoCommonsTest.Algorithms.Sorting
     [TestClass]
     public class BubbleSortTests
     {
-        int[] _arrayDesc;
         int[] _arrayAsc;
+        int[] _arrayDesc;
         SortBase<int> _sort;
 
         [TestInitialize]
         public void SetUp()
         {
+            _arrayAsc  = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             _arrayDesc = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
-            _arrayAsc =  new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             _sort = new BubbleSort<int>();
         }

@@ -22,7 +22,7 @@ namespace AlgoCommonsTest.Algorithms.Sorting
         {
             int[] empty = {};
 
-            //If this don't throws any exception then the code is ok
+            //If this doesn't throws any exception then the code is ok
             _sort.Sort(empty);
         }
 
