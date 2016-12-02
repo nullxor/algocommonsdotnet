@@ -11,8 +11,7 @@ namespace AlgoCommonsDotNet.Algorithms.Sorting
     public class InsertionSort<T> : SortBase<T> where T : IComparable<T>
     {
         /// <summary>
-        /// Sorts the array using the Insertion Sort algorithm,
-        /// this algorithm is O(n^2)
+        /// Sorts the array using the Insertion Sort algorithm, It's O(n^2)
         /// </summary>
         /// <param name="array">Array to sort</param>
         public override void Sort(T[] array)

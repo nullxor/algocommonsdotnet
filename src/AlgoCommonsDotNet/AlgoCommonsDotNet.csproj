@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Sorting\BubbleSort.cs" />
     <Compile Include="Algorithms\Sorting\InsertionSort.cs" />
+    <Compile Include="Algorithms\Sorting\SelectionSort.cs" />
     <Compile Include="Algorithms\Sorting\SortBase.cs" />
     <Compile Include="DataStructures\Generic\Lists\DynamicArray.cs" />
     <Compile Include="DataStructures\Generic\Trees\HeapBase.cs" />

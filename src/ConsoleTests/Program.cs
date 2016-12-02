@@ -18,7 +18,7 @@ namespace ConsoleTests
         {
             int[] array = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
             
-            SortBase<int> sort = new InsertionSort<int>();
+            SortBase<int> sort = new SelectionSort<int>();
 
             sort.Sort(array, SortingOrder.Ascending);
 
