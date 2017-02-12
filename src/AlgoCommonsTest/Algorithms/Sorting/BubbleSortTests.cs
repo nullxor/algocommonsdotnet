@@ -1,16 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using AlgoCommonsDotNet.Algorithms.Sorting;
 
 namespace AlgoCommonsTest.Algorithms.Sorting
 {
-    [TestClass]
+    [TestFixture]
     public class BubbleSortTests
     {
         int[] _arrayAsc;
         int[] _arrayDesc;
         SortBase<int> _sort;
 
-        [TestInitialize]
+        [SetUp]
         public void SetUp()
         {
             _arrayAsc  = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -19,7 +19,7 @@ namespace AlgoCommonsTest.Algorithms.Sorting
             _sort = new BubbleSort<int>();
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldOrderAscending()
         {
             _sort.Sort(_arrayDesc, SortingOrder.Ascending);
@@ -27,7 +27,7 @@ namespace AlgoCommonsTest.Algorithms.Sorting
             Assert.IsTrue(SortUtils<int>.ArraysAreEquals(_arrayAsc, _arrayDesc));
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldOrderDescending()
         {
             _sort.Sort(_arrayAsc, SortingOrder.Descending);

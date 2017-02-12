@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using AlgoCommonsDotNet.DataStructures.Generic.Lists;
 
 namespace AlgoCommonsTest.DataStructures.Generic.Arrays
 {
-    [TestClass]
+    [TestFixture]
     public class DynamicArrayTests
     {
         const int TestLength = 50;
         DynamicArray<int> _dynamicArray;
         
-        [TestInitialize]
+        [SetUp]
         public void SetUp()
         {
             //Array from 0 to 50 for easy indexing (index==value)
@@ -19,26 +19,26 @@ namespace AlgoCommonsTest.DataStructures.Generic.Arrays
             _dynamicArray = new DynamicArray<int>(array);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheCorrectLength()
         {
             Assert.AreEqual(TestLength, _dynamicArray.Length);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheCorrectItem()
         {
             Assert.AreEqual(_dynamicArray[25], 25);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldInsertCorrectly()
         {
             _dynamicArray.InsertAt(0, 100);
             Assert.AreEqual(_dynamicArray[0], 100);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldRemoveCorrectly()
         {
             var item = _dynamicArray.RemoveAt(25);
@@ -47,7 +47,7 @@ namespace AlgoCommonsTest.DataStructures.Generic.Arrays
             Assert.AreEqual(TestLength - 1, _dynamicArray.Length);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheCorrectLengthAfterInsertion()
         {
             _dynamicArray.Add(51);
@@ -55,7 +55,7 @@ namespace AlgoCommonsTest.DataStructures.Generic.Arrays
             Assert.AreEqual(TestLength + 2, _dynamicArray.Length);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheCorrectLengthAfterDeletion()
         {
             _dynamicArray.RemoveAt(0);
@@ -63,21 +63,21 @@ namespace AlgoCommonsTest.DataStructures.Generic.Arrays
             Assert.AreEqual(TestLength - 2, _dynamicArray.Length);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldThrowsExceptionIfIndexIsOutOfRange()
         {
-            Assert.ThrowsException<IndexOutOfRangeException>(() =>
+            Assert.Throws<IndexOutOfRangeException>(() =>
             {
                 var item = _dynamicArray[TestLength * 3];
             });
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldThrowsExceptionIfDeletingFromEmptyArray()
         {
             DynamicArray<int> empty = new DynamicArray<int>();
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() =>
+            Assert.Throws<IndexOutOfRangeException>(() =>
             {
                 empty.RemoveAt(5);
             });

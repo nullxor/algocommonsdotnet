@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using AlgoCommonsDotNet.DataStructures.Generic.Trees;
 
 namespace AlgoCommonsTests.DataStructures.Generic.Trees
@@ -8,42 +8,42 @@ namespace AlgoCommonsTests.DataStructures.Generic.Trees
     /// <summary>
     /// MaxHeap tests
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class MaxHeapTests
     {
         HeapBase<int> _heap;
         int[] _array;
 
-        [TestInitialize]
+        [SetUp]
         public void SetUp()
         {
             _array = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             _heap = new MaxHeap<int>(_array);
         }
 
-        [TestMethod]
+        [Test]
         public void EmptyArrayShouldReturnArgumentException()
         {
-            Assert.ThrowsException<ArgumentException>(() =>
+            Assert.Throws<ArgumentException>(() =>
             {
-                var emptyHeap = new MaxHeap<int>(new int[] { });
+                new MaxHeap<int>(new int[] { });
             });
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheCorrectHeapSize()
         {
             Assert.AreEqual(9, _heap.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheCorrectHeapSizeAfterRemoveTop()
         {
             _heap.RemoveTop();
             Assert.AreEqual(8, _heap.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldReturnTheMaxElementAfterRemoveTop()
         {
             var array = _heap.ToArray();

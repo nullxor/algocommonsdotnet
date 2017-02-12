@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using AlgoCommonsDotNet.Algorithms.Sorting;
 
 namespace AlgoCommonsTest.Algorithms.Sorting
@@ -6,18 +6,18 @@ namespace AlgoCommonsTest.Algorithms.Sorting
     /// <summary>
     /// Gemeral tests for the abstract class
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SortBaseTests
     {
         SortBase<int> _sort;
 
-        [TestInitialize]
+        [SetUp]
         public void SetUp()
         {
             _sort = new BubbleSort<int>();
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldBeOkWithEmptyArrays()
         {
             int[] empty = {};
@@ -26,7 +26,7 @@ namespace AlgoCommonsTest.Algorithms.Sorting
             _sort.Sort(empty);
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldBeOkWithOneElementArrays()
         {
             int[] empty = { 1 };

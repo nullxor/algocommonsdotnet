@@ -1,36 +1,27 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
-// La información general de un ensamblado se controla mediante el siguiente 
-// conjunto de atributos. Cambie estos valores de atributo para modificar la información
-// asociada con un ensamblado.
+// Information about this assembly is defined by the following attributes.
+// Change them to the values specific to your project.
+
 [assembly: AssemblyTitle("ConsoleTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ConsoleTests")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("olfran")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
-// para los componentes COM.  Si es necesario obtener acceso a un tipo en este ensamblado desde 
-// COM, establezca el atributo ComVisible en true en este tipo.
-[assembly: ComVisible(false)]
+// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
+// The form "{Major}.{Minor}.*" will automatically update the build and revision,
+// and "{Major}.{Minor}.{Build}.*" will update just the revision.
 
-// El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("447f99b8-316e-4039-8f0f-d9f99f6b9905")]
+[assembly: AssemblyVersion("1.0.*")]
 
-// La información de versión de un ensamblado consta de los cuatro valores siguientes:
-//
-//      Versión principal
-//      Versión secundaria
-//      Número de compilación
-//      Revisión
-//
-// Puede especificar todos los valores o establecer como predeterminados los números de compilación y de revisión 
-// mediante el carácter '*', como se muestra a continuación:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+// The following attributes are used to specify the signing key for the assembly,
+// if desired. See the Mono documentation for more information about signing.
+
+//[assembly: AssemblyDelaySign(false)]
+//[assembly: AssemblyKeyFile("")]
+
