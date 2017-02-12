@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using AlgoCommonsDotNet.DataStructures.Generic.Trees;
+using AlgoCommonsDotNet.DataStructures.Generic.Trees.Heap;
 
 namespace AlgoCommonsTests.DataStructures.Generic.Trees
 {

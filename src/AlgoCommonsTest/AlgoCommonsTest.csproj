@@ -42,6 +42,9 @@
     <Compile Include="DataStructures\Generic\Lists\DynamicArrayTests.cs" />
     <Compile Include="DataStructures\Generic\Trees\MaxHeapTests.cs" />
     <Compile Include="DataStructures\Generic\Trees\MinHeapTests.cs" />
+    <Compile Include="Algorithms\Sorting\HeapSortTests.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSortTests.cs" />
+    <Compile Include="Algorithms\Sorting\QuickSortTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

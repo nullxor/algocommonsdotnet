@@ -37,13 +37,21 @@
     <Compile Include="Algorithms\Sorting\SelectionSort.cs" />
     <Compile Include="Algorithms\Sorting\SortBase.cs" />
     <Compile Include="DataStructures\Generic\Lists\DynamicArray.cs" />
-    <Compile Include="DataStructures\Generic\Trees\HeapBase.cs" />
-    <Compile Include="DataStructures\Generic\Trees\MaxHeap.cs" />
-    <Compile Include="DataStructures\Generic\Trees\MinHeap.cs" />
+    <Compile Include="Algorithms\Sorting\HeapSort.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSort.cs" />
+    <Compile Include="Algorithms\Sorting\QuickSort.cs" />
+    <Compile Include="DataStructures\Generic\Trees\TreeNode.cs" />
+    <Compile Include="DataStructures\Generic\Trees\BST\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\Generic\Trees\Heap\HeapBase.cs" />
+    <Compile Include="DataStructures\Generic\Trees\Heap\MaxHeap.cs" />
+    <Compile Include="DataStructures\Generic\Trees\Heap\MinHeap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Algorithms\" />
     <Folder Include="DataStructures\" />
+    <Folder Include="DataStructures\Generic\Trees\" />
+    <Folder Include="DataStructures\Generic\Trees\Heap\" />
+    <Folder Include="DataStructures\Generic\Trees\BST\" />
   </ItemGroup>
 </Project>
