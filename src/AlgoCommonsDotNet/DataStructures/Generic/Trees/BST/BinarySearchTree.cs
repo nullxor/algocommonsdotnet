@@ -28,7 +28,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
     public class BinarySearchTree<K,V> where K : IComparable<K>
     {
         /// <summary>
-        /// Number of nodes
+        /// Number of nodes in the tree
         /// </summary>
         public long Length { get; private set; }
 
@@ -43,7 +43,12 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         public V this[K key]
         {
-            get { return Find(key)?.Value; }
+            get 
+            { 
+                BinaryTreeNode<K,V> node = Find(key);
+
+                return node != null ? node.Value : default(V);
+            }
             set { Set(key, value); }
         }
 

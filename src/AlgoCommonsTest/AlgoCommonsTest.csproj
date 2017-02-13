@@ -45,6 +45,7 @@
     <Compile Include="Algorithms\Sorting\HeapSortTests.cs" />
     <Compile Include="Algorithms\Sorting\MergeSortTests.cs" />
     <Compile Include="Algorithms\Sorting\QuickSortTests.cs" />
+    <Compile Include="DataStructures\Generic\Trees\BinarySearchTreeTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
