@@ -13,8 +13,12 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
         //GrowFactor we'll resize the array by this factor every time the buffer is full
         protected const int GrowFactor = 2;
 
+        //ShrinkFactor we'll shrink the array by this factor every time the length 
+        //of the buffer is _buffer.Length/ShrinkFactor, this should be diferent from GrowFactor
+        protected const int ShrinkFactor = 3;
+
         //Initial size of the buffer
-        protected const int DefaultSize = 20;
+        protected const int DefaultSize = 5;
         protected T[] _buffer;
 
         //Real length of the array 
@@ -125,7 +129,9 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
             {
                 _buffer[i] = _buffer[i + 1];
             }
-            
+
+            Shrink();
+
             return result;
         }
 
@@ -154,15 +160,16 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
         /// <summary>
         /// Ensure that the buffer has enough capacity to save new data
         /// </summary>
-        protected void EnsureCapacity()
+        /// <param name="force">Force</param>
+        protected void EnsureCapacity(bool force = false)
         {
             //If the Length is above the buffer length, expand the buffer by the GrowFactor
             //and copy all of the data to the new buffer, this operation is O(n)
-            if (_length >= _buffer.Length)
+            if (_length >= _buffer.Length || force)
             {
                 T[] newBuffer = new T[_length * GrowFactor];
 
-                for (int i = 0; i < _buffer.Length; i++)
+                for (int i = 0; i < _length; i++)
                 {
                     newBuffer[i] = _buffer[i];
                 }
@@ -170,6 +177,18 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
                 //I don't know how the .NET GC works but it should release this memory 
                 //in the next swap because we've lost the reference
                 _buffer = newBuffer;
+            }
+        }
+
+        /// <summary>
+        /// Shrink the buffer when the virtual length be less than 
+        /// _buffer.Length/ShrinkFactor to free unused memory.
+        /// </summary>
+        protected void Shrink()
+        {
+            if (_length <= (_buffer.Length / ShrinkFactor))
+            {
+                EnsureCapacity(true);
             }
         }
     }
