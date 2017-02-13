@@ -4,7 +4,7 @@
 Implementations in .NET of a few Algorithms and Data Structures. With a brief description of each Algorithm / Data Structure in the code comments.
 
 ### Disclaimer
-These implementations are for fun / learning purposes and even though I'm trying to code the best I can, it could not be the optimum nor secure way to implement them in .NET especially thread safety.
+These implementations are for fun / learning purposes, it could not be the optimum nor secure way to implement them in .NET especially thread safety.
 
 ### Tools and Resources
 ##### Free
