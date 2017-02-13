@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 {
@@ -22,21 +23,52 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
     /// corresponding operations on hash tables.
     /// 
     /// From Wikipedia.
+    /// 
     /// </summary>
     public class BinarySearchTree<K,V> where K : IComparable<K>
     {
+        /// <summary>
+        /// Number of nodes
+        /// </summary>
         public long Length { get; private set; }
 
         /// <summary>
         /// Root node of the tree
         /// </summary>
-        private BinaryTreeNode<K,V> _root;
+        protected BinaryTreeNode<K,V> _root;
 
         /// <summary>
-        /// Add a new node to the tree
+        /// Set the node value, if the key doesn't exist
+        /// a new node is added to the Tree with the given value
+        /// </summary>
+        public V this[K key]
+        {
+            get { return Find(key)?.Value; }
+            set { Set(key, value); }
+        }
+
+        /// <summary>
+        /// Gets the root of the tree
+        /// </summary>
+        /// <value>The root</value>
+        public KeyValuePair<K,V> Root
+        {
+            get
+            { 
+                if (_root != null)
+                {
+                    return new KeyValuePair<K,V>(_root.Key, _root.Value); 
+                }
+
+                return new KeyValuePair<K,V>();
+            }
+        }
+
+        /// <summary>
+        /// Adds a new node to the tree
         /// </summary>
         /// <param name="value">Value to add</param>
-        public void Add(K key, V value)
+        public virtual void Add(K key, V value)
         {
             BinaryTreeNode<K,V> cur = _root, prev = null;
 
@@ -46,6 +78,14 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
             while (cur != null)
             {
                 prev = cur;
+
+                //If the key already exists ovewrite it
+                if (cur.Key.CompareTo(key) == 0)
+                {
+                    cur.Value = value;
+                    return;
+                }
+
                 cur = (key.CompareTo(cur.Key) < 0) ? cur.Left : cur.Right;
             }
 
@@ -67,24 +107,14 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         }
 
         /// <summary>
-        /// Set the node value, if the key doesn't exist
-        /// a new node is added to the Tree with the given value
-        /// </summary>
-        public V this[K key]
-        {
-            get { return Find(key).Value; }
-            set { Set(key, value); }
-        }
-
-        /// <summary>
-        /// Set the node value, if the key doesn't exist
+        /// Sets the node value, if the key doesn't exist
         /// a new node is added to the Tree with the given value
         /// </summary>
         /// <param name="key">Key</param>
         /// <param name="value">Value to set</param>
         public void Set(K key, V value)
         {
-            BinaryTreeNode<K,V> node = FindNode(key);
+            BinaryTreeNode<K,V> node = Find(key);
 
             if (node == null)
             {
@@ -97,106 +127,34 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         }
 
         /// <summary>
-        /// Finds a node in the tree
-        /// </summary>
-        /// <param name="value">Key to search</param>
-        /// <returns>Found node, if it could not be found node.HasValue is false</returns>
-        public TreeNode<K,V> Find(K key)
-        {
-            BinaryTreeNode<K,V> node = FindNode(key);
-
-            return new TreeNode<K,V>(GetNodeKey(node), GetNodeValue(node), node != null);
-        }
-
-        /// <summary>
-        /// Find the Max node in the Tree, this operation is O(h)
-        /// thus in a balanced BST the operation takes O(log n)
-        /// </summary>
-        /// <returns>Max node in the tree or HasValue=false if the tree is empty</returns>
-        public TreeNode<K,V> Max()
-        {
-            BinaryTreeNode<K,V> cur = MaxNode(_root);
-
-            return new TreeNode<K,V>(GetNodeKey(cur), GetNodeValue(cur), cur != null);
-        }
-
-        /// <summary>
-        /// Find the Min node in the Tree, this operation is O(h)
-        /// thus in a balanced BST the operation takes O(log n)
-        /// </summary>
-        /// <returns>Min node in the tree or HasValue=false if the tree is empty</returns>
-        public TreeNode<K,V> Min()
-        {
-            BinaryTreeNode<K,V> cur = MinNode(_root);
-
-            return new TreeNode<K,V>(GetNodeKey(cur), GetNodeValue(cur), cur != null);
-        }
-
-        /// <summary>
-        /// Finds the Successor of the given node, for instance, if we have
-        /// a tree with the key values {12, 10, 18, 6, 14, 3, 2}
-        /// The successor of 2 would be 3
-        /// The successor of 12 would be 14
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <exception cref="ArgumentException"></exception>
-        /// <returns>Successor or HasValue==false if it has not successor</returns>
-        public TreeNode<K,V> Successor(K key)
-        {
-            BinaryTreeNode<K,V> node = FindNode(key);
-
-            if (node == null)
-            {
-                throw new ArgumentException($"The node with key {key} couldn't be found in the Tree");
-            }
-
-            BinaryTreeNode<K,V> succ = SuccessorNode(node);
-
-            return new TreeNode<K,V>(GetNodeKey(succ), GetNodeValue(succ), succ != null);
-        }
-
-        /// <summary>
-        /// Finds the Predecessor of the given node, for instance, if we have
-        /// a tree with the key values {12, 10, 18, 6, 14, 3, 2}
-        /// The successor of 3 would be 2
-        /// The successor of 14 would be 12
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <exception cref="ArgumentException"></exception>
-        /// <returns>Successor or HasValue==false if it has not successor</returns>
-        public TreeNode<K,V> Predecessor(K key)
-        {
-            BinaryTreeNode<K,V> node = FindNode(key);
-
-            if (node == null)
-            {
-                throw new ArgumentException($"The node with key {key} couldn't be found in the Tree");
-            }
-
-            BinaryTreeNode<K,V> pred = PredecessorNode(node);
-
-            return new TreeNode<K,V>(GetNodeKey(pred), GetNodeValue(pred), pred != null);
-        }
-
-        /// <summary>
-        /// Deletes a node from the tree
+        /// Removes a node from the tree
         /// </summary>
         /// <param name="key">Key of the  node</param>
         /// <returns>true or false  </returns>
-        public bool Delete(K key)
+        public virtual bool Remove(K key)
         {
-            BinaryTreeNode<K, V> node = FindNode(key);
+            BinaryTreeNode<K, V> node = Find(key);
 
             if (node == null)
             {
-                throw new ArgumentException($"The node with key {key} couldn't be found in the Tree");
+                return false;
             }
 
-            //The node to delete has two childs
+            Length--;
+
+            //The node has two childs
             if (node.Left != null && node.Right != null)
             {
-                //Find the successor
-                BinaryTreeNode<K, V> successor = SuccessorNode(node);
+                //Find the successor to the bottom left of the right child
+                BinaryTreeNode<K, V> successor = Successor(node);
+
+                //If the successor is the node at the right
+                if (node.Right.Key.CompareTo(successor.Key) == 0)
+                {
+                    node.Parent.Right = successor.Right;
+
+                    return true;
+                }
 
                 //Replace the content of the node to delete with the content of the successor node
                 node.Key = successor.Key;
@@ -204,23 +162,96 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 
                 //Delete the successor node
                 //The successor is at the botton left of the right child
-                //If the right child has not a left child then the successor is the right child itself
-                if (node.Right.Left == null)
-                {
-                    node.Right = node.Right.Right;
-                }
-                else
-                {
-                    successor.Parent.Left = null;
-                }
+                //Makes the parent points to the right subtree of the Successor
+                successor.Parent.Left = successor.Right;
             }
             else
             {
-                //The node to delete has zero or one child node
-                return DeleteNode(node);
+                //The node to delete has zero or one child
+                return Delete(node);
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Finds the item with the Max key in the tree
+        /// </summary>
+        /// <returns>KeyValuePair</returns>
+        public KeyValuePair<K,V> MaxKey()
+        {
+            BinaryTreeNode<K,V> max = Max(_root);
+
+            return new KeyValuePair<K, V>(max.Key, max.Value);
+        }
+
+        /// <summary>
+        /// Finds the item with the Min key in the tree
+        /// </summary>
+        /// <returns>KeyValuePair</returns>
+        public KeyValuePair<K,V> MinKey()
+        {
+            BinaryTreeNode<K,V> min = Min(_root);
+
+            return new KeyValuePair<K, V>(min.Key, min.Value);
+        }
+
+        /// <summary>
+        /// Finds the successor of the given key
+        /// </summary>
+        /// <returns>KeyValuePair</returns>
+        public KeyValuePair<K,V> SuccessorKey(K key)
+        {
+            BinaryTreeNode<K,V> node = Find(key);
+
+            if (node == null)
+            {
+                throw new ArgumentException($"The key {key} doesn't exist");
+            }
+
+            var succ = Successor(node);
+
+            //There is no successor, the key is the max
+            if (succ == null)
+            {
+                return new KeyValuePair<K, V>(node.Key, node.Value);
+            }
+
+            return new KeyValuePair<K, V>(succ.Key, succ.Value);
+        }
+
+        /// <summary>
+        /// Finds the predecessor of the given key
+        /// </summary>
+        /// <returns>KeyValuePair</returns>
+        public KeyValuePair<K,V> PredecessorKey(K key)
+        {
+            BinaryTreeNode<K,V> node = Find(key);
+
+            if (node == null)
+            {
+                throw new ArgumentException($"The key {key} doesn't exist");
+            }
+
+            var pred = Predecessor(node);
+
+            //There is no successor, the key is the max
+            if (pred == null)
+            {
+                return new KeyValuePair<K, V>(node.Key, node.Value);
+            }
+
+            return new KeyValuePair<K, V>(pred.Key, pred.Value);
+        }
+
+        /// <summary>
+        /// Determines if the item with the given key is the root of the tree
+        /// </summary>
+        /// <returns>true if it's the root otherwise false</returns>
+        /// <param name="key">Key.</param>
+        public bool IsRoot(K key)
+        {
+            return _root?.Key.CompareTo(key) == 0;
         }
 
         /// <summary>
@@ -228,7 +259,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         /// <param name="value">Key to search</param>
         /// <returns>Found node or null</returns>
-        private BinaryTreeNode<K,V> FindNode(K key)
+        protected virtual BinaryTreeNode<K,V> Find(K key)
         {
             BinaryTreeNode<K,V> cur = _root;
 
@@ -241,12 +272,12 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         }
 
         /// <summary>
-        /// Find the Max node in the Tree, this operation is O(h)
+        /// Finds the Max node in the Tree, this operation is O(h)
         /// thus in a balanced BST the operation takes O(log n)
         /// </summary>
         /// <param name="firstNode">Starting node</param>
         /// <returns>Max node in the tree or null if the tree is empty</returns>
-        private BinaryTreeNode<K,V> MaxNode(BinaryTreeNode<K,V> firstNode)
+        protected virtual BinaryTreeNode<K,V> Max(BinaryTreeNode<K,V> firstNode)
         {
             BinaryTreeNode<K,V> cur = firstNode;
 
@@ -260,12 +291,12 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         }
 
         /// <summary>
-        /// Find the Max node in the Tree, this operation is O(h)
+        /// Finds the Max node in the Tree, this operation is O(h)
         /// thus in a balanced BST the operation takes O(log n)
         /// </summary>
         /// <param name="firstNode">Starting node</param>
         /// <returns>Min node in the tree or null if the tree is empty</returns>
-        private BinaryTreeNode<K,V> MinNode(BinaryTreeNode<K,V> firstNode)
+        protected virtual BinaryTreeNode<K,V> Min(BinaryTreeNode<K,V> firstNode)
         {
             BinaryTreeNode<K,V> cur = firstNode;
 
@@ -283,7 +314,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         /// <param name="node">Node</param>
         /// <returns>Successor or null it has not any successor</returns>
-        private BinaryTreeNode<K,V> SuccessorNode(BinaryTreeNode<K,V> node)
+        protected BinaryTreeNode<K,V> Successor(BinaryTreeNode<K,V> node)
         {
             BinaryTreeNode<K,V> cur = node, parent = node;
 
@@ -291,7 +322,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
             //starting from the right child
             if ((cur != null) && (cur.Right != null))
             {
-                return MinNode(cur.Right);
+                return Min(cur.Right);
             }
 
             //If the node hasn't a right child, then the successor is upwards
@@ -312,8 +343,8 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// Finds the predecessor of the given node
         /// </summary>
         /// <param name="node">Node</param>
-        /// <returns>Successor or null it has not any predecessor</returns>
-        private BinaryTreeNode<K,V> PredecessorNode(BinaryTreeNode<K,V> node)
+        /// <returns>Successor or null if there is no any predecessor</returns>
+        protected BinaryTreeNode<K,V> Predecessor(BinaryTreeNode<K,V> node)
         {
             BinaryTreeNode<K,V> cur = node, parent = node;
 
@@ -321,7 +352,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
             //starting from the left child
             if ((cur != null) && (cur.Left != null))
             {
-                return MaxNode(cur.Left);
+                return Max(cur.Left);
             }
 
             //If the node hasn't a Left child, then the predecessor is upwards
@@ -344,7 +375,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// zero or one child
         /// </summary>
         /// <param name="node">Node to delete</param>
-        private bool DeleteNode(BinaryTreeNode<K,V> node)
+        protected bool Delete(BinaryTreeNode<K,V> node)
         {
             if (node == null)
             {
@@ -354,7 +385,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
             var child = node.Left == null ? node.Right : node.Left;
             var parent = node.Parent;
 
-            //We are deleting a node from a Tree with only one node, so we delete the root
+            //We are deleting a node from a Tree with only one node, so we should delete the root
             if (parent == null)
             {
                 _root = null;
@@ -388,47 +419,6 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Returns the key from a node or default T if the node is null
-        /// </summary>
-        /// <param name="node">Node</param>
-        /// <returns>Value from a node or default T if the node is null</returns>
-        private K GetNodeKey(BinaryTreeNode<K,V> node)
-        {
-            return (node != null) ? node.Key : default(K);
-        }
-
-        /// <summary>
-        /// Returns the value from a node or default T if the node is null
-        /// </summary>
-        /// <param name="node">Node</param>
-        /// <returns>Value from a node or default T if the node is null</returns>
-        private V GetNodeValue(BinaryTreeNode<K,V> node)
-        {
-            return (node != null) ? node.Value : default(V);
-        }
-
-        /// <summary>
-        /// A Node for a Binary Tree
-        /// </summary>
-        private class BinaryTreeNode<K,V> where K : IComparable<K>
-        {
-            public BinaryTreeNode<K,V> Parent { get; set; }
-            public BinaryTreeNode<K,V> Left { get; set; }
-            public BinaryTreeNode<K,V> Right { get; set; }
-            public K Key { get; set; }
-            public V Value { get; set; }
-
-            public BinaryTreeNode(BinaryTreeNode<K,V> parent, BinaryTreeNode<K,V> left, BinaryTreeNode<K,V> right, K key, V value)
-            {
-                Parent = parent;
-                Left = left;
-                Right = right;
-                Key = key;
-                Value = value;
-            }
         }
     }
 }

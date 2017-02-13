@@ -40,11 +40,11 @@
     <Compile Include="Algorithms\Sorting\HeapSort.cs" />
     <Compile Include="Algorithms\Sorting\MergeSort.cs" />
     <Compile Include="Algorithms\Sorting\QuickSort.cs" />
-    <Compile Include="DataStructures\Generic\Trees\TreeNode.cs" />
-    <Compile Include="DataStructures\Generic\Trees\BST\BinarySearchTree.cs" />
     <Compile Include="DataStructures\Generic\Trees\Heap\HeapBase.cs" />
     <Compile Include="DataStructures\Generic\Trees\Heap\MaxHeap.cs" />
     <Compile Include="DataStructures\Generic\Trees\Heap\MinHeap.cs" />
+    <Compile Include="DataStructures\Generic\Trees\BinaryTreeNode.cs" />
+    <Compile Include="DataStructures\Generic\Trees\BST\BinarySearchTree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
