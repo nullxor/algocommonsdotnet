@@ -136,7 +136,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         /// <param name="key">Key of the  node</param>
         /// <returns>true or false  </returns>
-        public virtual bool Remove(K key)
+        public bool Remove(K key)
         {
             BinaryTreeNode<K, V> node = Find(key);
 
@@ -147,27 +147,103 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 
             Length--;
 
-            //The node has two childs
+            //The node has two childs, we have to handle 2 cases
+            //1- The successor is the right child of the node we are removing
+            //2- The successor is at the bottom left of the right child
             if (node.Left != null && node.Right != null)
             {
                 //Find the successor to the bottom left of the right child
                 BinaryTreeNode<K, V> successor = Successor(node);
 
-                //If the successor is the node at the right
+                //Case 1- The successor is the right child of the node we are removing
                 if (node.Right.Key.CompareTo(successor.Key) == 0)
                 {
-                    node.Parent.Right = successor.Right;
+                    //Replaces the node to delete with the successor and we're done
+                    //We've lost the reference to the successor and it should be swapped
+                    //by the GC.
+
+                    //For instance, we have this BST and we want to remove (7) which is the root,
+                    //but the same applies to any node with the right child as successor:
+
+                    /*
+                     *        (7)
+                     *       /   \
+                     *     (5)   (8)
+                     *              \
+                     *              (9)
+                     */
+
+                    node.Key = successor.Key;
+                    node.Value = successor.Value;
+                    node.Right = successor.Right;
+
+                   /* Replace the content of the node to delete with it's right
+                    * child, but maintain the parent
+                    * 
+                    *        (8)
+                    *       /   \
+                    *     (5)    \
+                    *             \
+                    *             (9)
+                    */
 
                     return true;
                 }
 
-                //Replace the content of the node to delete with the content of the successor node
+                //We've reach this point, it means that it's the case 2
+                //Case 2- The successor is at the bottom left of the right child
+                //Replace the content of the node to remove with its successor,
+                //maintaining its parent
                 node.Key = successor.Key;
                 node.Value = successor.Value;
 
-                //Delete the successor node
-                //The successor is at the botton left of the right child
-                //Makes the parent points to the right subtree of the Successor
+                //And now make the parent of the successor point to the right
+                //subtree of the Successor, let's see this with an ASCII graph
+
+                /* Let's remove (12)
+                 * 
+                 *                    (7)
+                 *                   /   \
+                 *                 /       \
+                 *               /           \
+                 *             (5)           (12)
+                 *            /   \        /      \
+                 *          (3)   (6)    (9)      (15)
+                 *         /   \        /   \    /    \
+                 *       (1)   (4)    (8)  (10) (13) (17)
+                 *                                  \
+                 *                                  (14)
+
+                 *  Replace the node to remove (12) with its successor, in this case
+                 *  the successor of (12) is (13), and it's gonna be the last node
+                 *  at the bottom left of the right child, so the successor won't have
+                 *  a left child but it can have a right child, as we can see with (13)
+                 *  or it could be a subtree aswell, so we need to make that the parent
+                 *  of the successor -(15) in this case- points to its right child or subtree,
+                 *  now (15).Left points to (14) and (14).Parent points to (15).
+                 *
+                 *  This works even if the node to delete is the root.
+                 * 
+                 *                    (7)
+                 *                   /   \
+                 *                 /       \
+                 *               /           \
+                 *             (5)           (13)
+                 *            /   \        /      \
+                 *          (3)   (6)    (9)      (15)
+                 *         /   \        /   \    /    \
+                 *       (1)   (4)    (8)  (10)   \   (17)
+                 *                                  \
+                 *                                  (14)
+                 */
+
+                //Fix the parent if the successor has a right node or subtree
+                
+                if (successor.Right != null)
+                {
+                    successor.Right.Parent = successor.Parent;        
+                }
+
                 successor.Parent.Left = successor.Right;
             }
             else
@@ -176,7 +252,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
                 return Delete(node);
             }
 
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -376,7 +452,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 
         /// <summary>
         /// Deletes a node with zero or one child, by "transplanting" the child
-        /// to its parent node, Note: this method only supports these cases
+        /// to its parent node, Note: this method only supports cases with
         /// zero or one child
         /// </summary>
         /// <param name="node">Node to delete</param>
@@ -390,30 +466,30 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
             var child = node.Left == null ? node.Right : node.Left;
             var parent = node.Parent;
 
-            //We are deleting a node from a Tree with only one node, so we should delete the root
+            //We are removing the root
             if (parent == null)
             {
-                _root = null;
+                //We are removing the root, it can have 0 or 1 child
+                _root = child;
+
+                if (_root != null)
+                {
+                    _root.Parent = null; //Fix the parent
+                }
+
                 return true;
             }
 
-            //If the node hasn't children, remove it from its parent
-            if (child == null)
+            //Is not the root
+
+            //Fix the parent
+            if (child != null)
             {
-                if ((parent.Left != null) && (parent.Left.Key.CompareTo(node.Key) == 0))
-                {
-                    parent.Left = null;
-                }
-
-                if ((parent.Right != null) && (parent.Right.Key.CompareTo(node.Key) == 0))
-                {
-                    parent.Right = null;
-                }
-
-                return true;
+                child.Parent = parent;
             }
 
-            //The node has one child, so makes the parent points to the child
+            //Make the parent points to the correct child, it could be null if the node
+            //to remove hasn't any child
             if ((parent.Left != null) && (parent.Left.Key.CompareTo(node.Key) == 0))
             {
                 parent.Left = child;

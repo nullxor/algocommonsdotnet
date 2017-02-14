@@ -10,13 +10,17 @@ namespace AlgoCommonsTest
     [TestFixture]
     public class BinarySearchTreeTests
     {
-        /* We'll use this BST
+        /* We'll use this BST for testing
          * 
-         *                      [7]
-         *            (5)                 (12)
-         *        (3)     (6)        (9)       (15)
-         *      (1) (4)            (8) (10) (13)  (17)
-         * 
+         *                    (7)
+         *                   /   \
+         *                 /       \
+         *               /           \
+         *             (5)           (12)
+         *            /   \        /      \
+         *          (3)   (6)    (9)      (15)
+         *         /   \        /   \    /    \
+         *       (1)   (4)    (8)  (10) (13) (17)
          */
 
         BinarySearchTree<int, int> _bst;
