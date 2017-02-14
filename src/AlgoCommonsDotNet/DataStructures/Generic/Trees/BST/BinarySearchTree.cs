@@ -177,7 +177,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
                     node.Value = successor.Value;
                     node.Right = successor.Right;
 
-                   /* Replace the content of the node to delete with it's right
+                   /* Replace the content of the node to delete with its right
                     * child, but maintain the parent
                     * 
                     *        (8)
