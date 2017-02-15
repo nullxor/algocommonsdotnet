@@ -3,27 +3,29 @@ using System.Collections.Generic;
 
 namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 {
+   /*
+    * In computer science, binary search trees (BST), sometimes called ordered or
+    * sorted binary trees, are a particular type of containers: data structures that
+    * store "items" (such as numbers, names etc.) in memory. They allow fast lookup,
+    * addition and removal of items, and can be used to implement either dynamic sets
+    * of items, or lookup tables that allow finding an item by its key (e.g., finding
+    * the phone number of a person by name).
+    *
+    * Binary search trees keep their keys in sorted order, so that lookup and other
+    * operations can use the principle of binary search: when looking for a key in a
+    * tree (or a place to insert a new key), they traverse the tree from root to leaf,
+    * making comparisons to keys stored in the nodes of the tree and deciding, based on
+    * the comparison, to continue searching in the left or right subtrees. On average,
+    * this means that each comparison allows the operations to skip about half of the tree,
+    * so that each lookup, insertion or deletion takes time proportional to the logarithm
+    * of the number of items stored in the tree. This is much better than the linear time
+    * required to find items by key in an (unsorted) array, but slower than the
+    * corresponding operations on hash tables.
+    *
+    * From Wikipedia.
+    */
     /// <summary>
-    /// In computer science, binary search trees (BST), sometimes called ordered or
-    /// sorted binary trees, are a particular type of containers: data structures that
-    /// store "items" (such as numbers, names etc.) in memory. They allow fast lookup,
-    /// addition and removal of items, and can be used to implement either dynamic sets
-    /// of items, or lookup tables that allow finding an item by its key (e.g., finding 
-    /// the phone number of a person by name).
-    /// 
-    /// Binary search trees keep their keys in sorted order, so that lookup and other 
-    /// operations can use the principle of binary search: when looking for a key in a
-    /// tree (or a place to insert a new key), they traverse the tree from root to leaf,
-    /// making comparisons to keys stored in the nodes of the tree and deciding, based on
-    /// the comparison, to continue searching in the left or right subtrees. On average,
-    /// this means that each comparison allows the operations to skip about half of the tree,
-    /// so that each lookup, insertion or deletion takes time proportional to the logarithm 
-    /// of the number of items stored in the tree. This is much better than the linear time
-    /// required to find items by key in an (unsorted) array, but slower than the
-    /// corresponding operations on hash tables.
-    /// 
-    /// From Wikipedia.
-    /// 
+    /// Binary Search Tree
     /// </summary>
     public class BinarySearchTree<K,V> where K : IComparable<K>
     {
@@ -43,8 +45,8 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         public V this[K key]
         {
-            get 
-            { 
+            get
+            {
                 BinaryTreeNode<K,V> node = Find(key);
 
                 return node != null ? node.Value : default(V);
@@ -59,10 +61,10 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         public KeyValuePair<K,V> Root
         {
             get
-            { 
+            {
                 if (_root != null)
                 {
-                    return new KeyValuePair<K,V>(_root.Key, _root.Value); 
+                    return new KeyValuePair<K,V>(_root.Key, _root.Value);
                 }
 
                 return new KeyValuePair<K,V>();
@@ -179,7 +181,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 
                    /* Replace the content of the node to delete with its right
                     * child, but maintain the parent
-                    * 
+                    *
                     *        (8)
                     *       /   \
                     *     (5)    \
@@ -201,7 +203,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
                 //subtree of the Successor, let's see this with an ASCII graph
 
                 /* Let's remove (12)
-                 * 
+                 *
                  *                    (7)
                  *                   /   \
                  *                 /       \
@@ -213,7 +215,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
                  *       (1)   (4)    (8)  (10) (13) (17)
                  *                                  \
                  *                                  (14)
-
+                 *
                  *  Replace the node to remove (12) with its successor, in this case
                  *  the successor of (12) is (13), and it's gonna be the last node
                  *  at the bottom left of the right child, so the successor won't have
@@ -223,7 +225,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
                  *  now (15).Left points to (14) and (14).Parent points to (15).
                  *
                  *  This works even if the node to delete is the root.
-                 * 
+                 *
                  *                    (7)
                  *                   /   \
                  *                 /       \
@@ -238,10 +240,10 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
                  */
 
                 //Fix the parent if the successor has a right node or subtree
-                
+
                 if (successor.Right != null)
                 {
-                    successor.Right.Parent = successor.Parent;        
+                    successor.Right.Parent = successor.Parent;
                 }
 
                 successor.Parent.Left = successor.Right;

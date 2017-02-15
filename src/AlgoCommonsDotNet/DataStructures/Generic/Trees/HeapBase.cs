@@ -3,15 +3,17 @@ using System.Collections.Generic;
 
 namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 {
+   /*
+    * In computer science, a heap is a specialized tree-based data structure
+    * that satisfies the heap property: If A is a parent node of B then
+    * the key (the value) of node A is ordered with respect to the key of node B
+    * with the same ordering applying across the heap. A heap can be classified
+    * further as either a "max heap" or a "min heap".
+    *
+    * From Wikipedia.
+    */
     /// <summary>
     /// Base class for the Heap Data Structure
-    /// <para>
-    /// In computer science, a heap is a specialized tree-based data structure
-    /// that satisfies the heap property: If A is a parent node of B then
-    /// the key (the value) of node A is ordered with respect to the key of node B
-    /// with the same ordering applying across the heap. A heap can be classified
-    /// further as either a "max heap" or a "min heap". (Source: Wikipedia).
-    /// </para>
     /// </summary>
     public abstract class HeapBase<T> where T : IComparable
     {
@@ -30,7 +32,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 
             _heap = new List<T>(array);
 
-            //Heapify, it's _heap.Count / 2 because starting from (_heap.Count / 2) + 1 
+            //Heapify, it's _heap.Count / 2 because starting from (_heap.Count / 2) + 1
             //the nodes aren't root This operation is O(n)
             for (int i = (_heap.Count / 2); i >= 0; i--)
             {

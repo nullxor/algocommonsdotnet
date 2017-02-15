@@ -3,7 +3,7 @@
 namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 {
     /// <summary>
-    /// Implementation of a MaxHeap data structure
+    /// Implementation of a Max heap
     /// </summary>
     /// <typeparam name="T">Data type, it must implements the IComparable interface</typeparam>
     public class MaxHeap<T> : HeapBase<T> where T : IComparable

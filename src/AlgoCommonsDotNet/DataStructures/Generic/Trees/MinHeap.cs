@@ -3,7 +3,7 @@
 namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 {
     /// <summary>
-    /// Implementation of a MaxHeap data structure
+    /// Implementation of a Min heap
     /// </summary>
     /// <typeparam name="T">Data type, it must implements the IComparable interface</typeparam>
     public class MinHeap<T> : HeapBase<T> where T : IComparable
@@ -35,4 +35,3 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
         }
     }
 }
-

@@ -2,18 +2,24 @@
 
 namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
 {
+   /*
+    * In computer science, a dynamic array, growable array, resizable array,
+    * dynamic table, mutable array, or array list is a random access,
+    * variable-size list data structure that allows elements to be added or
+    * removed. It is supplied with standard libraries in many modern mainstream
+    * programming languages.
+    *  
+    * From Wikipedia.
+    */
     /// <summary>
-    /// In computer science, a dynamic array, growable array, resizable array, dynamic table,
-    /// mutable array, or array list is a random access, variable-size list data structure that
-    /// allows elements to be added or removed. It is supplied with standard libraries in many
-    /// modern mainstream programming languages. From Wikipedia.
+    /// Dynamic array
     /// </summary>
     public class DynamicArray<T>
     {
         //GrowFactor we'll resize the array by this factor every time the buffer is full
         protected const int GrowFactor = 2;
 
-        //ShrinkFactor we'll shrink the array by this factor every time the length 
+        //ShrinkFactor we'll shrink the array by this factor every time the length
         //of the buffer is _buffer.Length/ShrinkFactor, this should be diferent from GrowFactor
         protected const int ShrinkFactor = 3;
 
@@ -21,7 +27,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
         protected const int DefaultSize = 5;
         protected T[] _buffer;
 
-        //Real length of the array 
+        //Real length of the array
         //It's O(1) because we'll update the Length when adding or removing items
         protected int _length;
         public int Length { get { return _length; } }
@@ -174,14 +180,14 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Lists
                     newBuffer[i] = _buffer[i];
                 }
 
-                //I don't know how the .NET GC works but it should release this memory 
+                //I don't know how the .NET GC works but it should release this memory
                 //in the next swap because we've lost the reference
                 _buffer = newBuffer;
             }
         }
 
         /// <summary>
-        /// Shrink the buffer when the virtual length be less than 
+        /// Shrink the buffer when the virtual length be less than
         /// _buffer.Length/ShrinkFactor to free unused memory.
         /// </summary>
         protected void Shrink()

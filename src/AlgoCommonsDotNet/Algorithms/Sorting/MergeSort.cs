@@ -3,17 +3,20 @@ using System.Collections.Generic;
 
 namespace AlgoCommonsDotNet.Algorithms.Sorting
 {
+   /*
+    * Top-Down Merge Sort implementation
+    *
+    * In computer science, merge sort (also commonly spelled mergesort)
+    * is an efficient, general-purpose, comparison-based sorting algorithm.
+    * Most implementations produce a stable sort, which means that the
+    * implementation preserves the input order of equal elements in the sorted
+    * output. Mergesort is a divide and conquer algorithm that was invented by
+    * John von Neumann in 1945.
+    *
+    * From Wikipedia.
+    */
     /// <summary>
-    /// Top-Down Merge Sort implementation
-    /// 
-    /// In computer science, merge sort (also commonly spelled mergesort) 
-    /// is an efficient, general-purpose, comparison-based sorting algorithm.
-    /// Most implementations produce a stable sort, which means that the
-    /// implementation preserves the input order of equal elements in the sorted
-    /// output. Mergesort is a divide and conquer algorithm that was invented by
-    /// John von Neumann in 1945.
-    /// 
-    /// From Wikipedia.
+    /// Top down Merge sort
     /// </summary>
     public class MergeSort<T> : SortBase<T> where T : IComparable<T>
     {
@@ -63,7 +66,7 @@ namespace AlgoCommonsDotNet.Algorithms.Sorting
         protected void Merge(IList<T> result, IList<T> buffer, int from, int middle, int to)
         {
             int leftIndex = from, rightIndex = middle, resultIndex = from;
-                                    
+
             while ((leftIndex < middle) && (rightIndex < to))
             {
                 if (Comparer(result[leftIndex], result[rightIndex]) <= 0)

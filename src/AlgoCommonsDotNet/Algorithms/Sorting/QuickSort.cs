@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace AlgoCommonsDotNet.Algorithms.Sorting
 {
     /*
-     * Quicksort (sometimes called partition-exchange sort) is an efficient 
+     * Quicksort (sometimes called partition-exchange sort) is an efficient
      * sorting algorithm, serving as a systematic method for placing the
      * elements of an array in order. Developed by Tony Hoare in 1959, with
      * his work published in 1961, it is still a commonly used algorithm for sorting.
@@ -15,12 +15,12 @@ namespace AlgoCommonsDotNet.Algorithms.Sorting
      * implementations it is not a stable sort, meaning that the relative order of equal
      * sort items is not preserved.Quicksort can operate in-place on an array,
      * requiring small additional amounts of memory to perform the sorting.
-     *  
+     *
      * From Wikipedia
-     */ 
+     */
 
     /// <summary>
-    /// Sorts the array using QuickSort
+    /// Quicksort
     /// </summary>
     public class QuickSort<T> : SortBase<T> where T : IComparable<T>
     {
