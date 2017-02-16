@@ -51,6 +51,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
 
                 return node != null ? node.Value : default(V);
             }
+
             set { Set(key, value); }
         }
 
@@ -138,7 +139,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         /// <param name="key">Key of the  node</param>
         /// <returns>true or false  </returns>
-        public bool Remove(K key)
+        public virtual bool Remove(K key)
         {
             BinaryTreeNode<K, V> node = Find(key);
 
@@ -379,7 +380,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
         /// </summary>
         /// <param name="firstNode">Starting node</param>
         /// <returns>Min node in the tree or null if the tree is empty</returns>
-        protected virtual BinaryTreeNode<K,V> Min(BinaryTreeNode<K,V> firstNode)
+        protected BinaryTreeNode<K,V> Min(BinaryTreeNode<K,V> firstNode)
         {
             BinaryTreeNode<K,V> cur = firstNode;
 
