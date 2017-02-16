@@ -45,6 +45,7 @@
     <Compile Include="DataStructures\Generic\Trees\Heap\MinHeap.cs" />
     <Compile Include="DataStructures\Generic\Trees\BinaryTreeNode.cs" />
     <Compile Include="DataStructures\Generic\Trees\BST\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\Generic\Trees\RedBlackTreeNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
