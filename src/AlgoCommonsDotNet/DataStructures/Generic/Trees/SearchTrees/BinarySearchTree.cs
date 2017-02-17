@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.BST
+namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
 {
    /*
     * In computer science, binary search trees (BST), sometimes called ordered or

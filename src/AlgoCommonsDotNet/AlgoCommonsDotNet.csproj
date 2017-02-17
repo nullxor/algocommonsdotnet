@@ -44,8 +44,8 @@
     <Compile Include="DataStructures\Generic\Trees\Heap\MaxHeap.cs" />
     <Compile Include="DataStructures\Generic\Trees\Heap\MinHeap.cs" />
     <Compile Include="DataStructures\Generic\Trees\BinaryTreeNode.cs" />
-    <Compile Include="DataStructures\Generic\Trees\BST\BinarySearchTree.cs" />
     <Compile Include="DataStructures\Generic\Trees\RedBlackTreeNode.cs" />
+    <Compile Include="DataStructures\Generic\Trees\SearchTrees\BinarySearchTree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -53,6 +53,6 @@
     <Folder Include="DataStructures\" />
     <Folder Include="DataStructures\Generic\Trees\" />
     <Folder Include="DataStructures\Generic\Trees\Heap\" />
-    <Folder Include="DataStructures\Generic\Trees\BST\" />
+    <Folder Include="DataStructures\Generic\Trees\SearchTrees\" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using AlgoCommonsDotNet.DataStructures.Generic.Trees.BST;
+using AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees;
 
 namespace AlgoCommonsTest
 {
