@@ -59,7 +59,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// Gets the root of the tree
         /// </summary>
         /// <value>The root</value>
-        public KeyValuePair<K,V> Root
+        public KeyValuePair<K,V>? Root
         {
             get
             {
@@ -68,7 +68,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                     return new KeyValuePair<K,V>(_root.Key, _root.Value);
                 }
 
-                return new KeyValuePair<K,V>();
+                return null;
             }
         }
 
@@ -156,7 +156,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             if (node.Left != null && node.Right != null)
             {
                 //Find the successor to the bottom left of the right child
-                BinaryTreeNode<K, V> successor = Successor(node);
+                BinaryTreeNode<K, V> successor = SuccessorNode(node);
 
                 //Case 1- The successor is the right child of the node we are removing
                 if (node.Right.Key.CompareTo(successor.Key) == 0)
@@ -281,10 +281,10 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         }
 
         /// <summary>
-        /// Finds the successor of the given key
+        /// Finds the in order successor of the given key
         /// </summary>
         /// <returns>KeyValuePair</returns>
-        public KeyValuePair<K,V> SuccessorKey(K key)
+        public KeyValuePair<K,V> Successor(K key)
         {
             BinaryTreeNode<K,V> node = Find(key);
 
@@ -293,7 +293,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                 throw new ArgumentException($"The key {key} doesn't exist");
             }
 
-            var succ = Successor(node);
+            var succ = SuccessorNode(node);
 
             //There is no successor, the key is the max
             if (succ == null)
@@ -305,10 +305,10 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         }
 
         /// <summary>
-        /// Finds the predecessor of the given key
+        /// Finds the in order predecessor of the given key
         /// </summary>
         /// <returns>KeyValuePair</returns>
-        public KeyValuePair<K,V> PredecessorKey(K key)
+        public KeyValuePair<K,V> Predecessor(K key)
         {
             BinaryTreeNode<K,V> node = Find(key);
 
@@ -317,7 +317,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                 throw new ArgumentException($"The key {key} doesn't exist");
             }
 
-            var pred = Predecessor(node);
+            var pred = PredecessorNode(node);
 
             //There is no successor, the key is the max
             if (pred == null)
@@ -361,9 +361,9 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="firstNode">Starting node</param>
         /// <returns>Max node in the tree or null if the tree is empty</returns>
-        protected virtual BinaryTreeNode<K,V> Max(BinaryTreeNode<K,V> firstNode)
+        protected virtual BinaryTreeNode<K,V> Max(BinaryTreeNode<K,V> root)
         {
-            BinaryTreeNode<K,V> cur = firstNode;
+            BinaryTreeNode<K,V> cur = root;
 
             //In a BST the Max element is always to the right of the root
             while ((cur != null) && (cur.Right != null))
@@ -398,13 +398,13 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="node">Node</param>
         /// <returns>Successor or null it has not any successor</returns>
-        protected BinaryTreeNode<K,V> Successor(BinaryTreeNode<K,V> node)
+        protected BinaryTreeNode<K,V> SuccessorNode(BinaryTreeNode<K,V> node)
         {
             BinaryTreeNode<K,V> cur = node, parent = node;
 
             //If the right child is not null, then the successor is the Min node
             //starting from the right child
-            if ((cur != null) && (cur.Right != null))
+            if (cur.Right != null)
             {
                 return Min(cur.Right);
             }
@@ -428,13 +428,13 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="node">Node</param>
         /// <returns>Successor or null if there is no any predecessor</returns>
-        protected BinaryTreeNode<K,V> Predecessor(BinaryTreeNode<K,V> node)
+        protected BinaryTreeNode<K,V> PredecessorNode(BinaryTreeNode<K,V> node)
         {
             BinaryTreeNode<K,V> cur = node, parent = node;
 
             //If the left child is not null, then the successor is the Max node
             //starting from the left child
-            if ((cur != null) && (cur.Left != null))
+            if (cur.Left != null)
             {
                 return Max(cur.Left);
             }

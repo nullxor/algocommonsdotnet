@@ -67,7 +67,7 @@ namespace AlgoCommonsTest
         [Test]
         public void ShouldReturnTheCorrectRoot()
         {
-            Assert.AreEqual(_bst.Root.Key, 7);
+            Assert.AreEqual(_bst.Root.Value.Key, 7);
         }
 
         [Test]
@@ -81,8 +81,8 @@ namespace AlgoCommonsTest
             //Left of the successor parent
 
             //In short words in this case if we delete the root 7 the new root should be 8
-            _bst.Remove(_bst.Root.Key);
-            Assert.AreEqual(_bst.Root.Key, 8);
+            _bst.Remove(_bst.Root.Value.Key);
+            Assert.AreEqual(_bst.Root.Value.Key, 8);
 
             //If we delete again, the new root would be 9 (Successor of 8) and because (9) has a 
             //right child (10) we must to transplant (10) to the left of the parent of (9) in this case (12)
@@ -124,13 +124,13 @@ namespace AlgoCommonsTest
         [Test]
         public void ShouldFindSuccessor()
         {
-            Assert.AreEqual(9, _bst.SuccessorKey(8).Key);
+            Assert.AreEqual(9, _bst.Successor(8).Key);
         }
 
         [Test]
         public void ShouldFindPredecessor()
         {
-            Assert.AreEqual(7, _bst.PredecessorKey(8).Key);
+            Assert.AreEqual(7, _bst.Predecessor(8).Key);
         }
     }
 }

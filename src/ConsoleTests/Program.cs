@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AlgoCommonsDotNet.DataStructures.Generic.Trees.BST;
+using AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees;
 
 namespace ConsoleTests
 {
@@ -32,10 +32,10 @@ namespace ConsoleTests
             bst.Add(13, 13);
             bst.Add(17, 17);
 
-            bst.Remove(7);
+            //bst.Remove(7);
             //bst.Add(100, 100);
 
-            Console.WriteLine(bst.Length);
+            Console.WriteLine(bst.Successor(6));
             Console.WriteLine();
         }
     }
