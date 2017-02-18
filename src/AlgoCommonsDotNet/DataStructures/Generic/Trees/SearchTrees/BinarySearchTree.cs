@@ -78,34 +78,8 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// <param name="value">Value to add</param>
         public virtual void Add(K key, V value)
         {
-            bool keyExists;
-            //Find the correct spot to insert the new node
-            BinaryTreeNode<K,V> insertionSpot = FindNewInsertionSpot(key, out keyExists);
-
-            //If the key already exists ovewrite it
-            if (keyExists)
-            {
-                insertionSpot.Value = value;
-                return;
-            }
-
+            AddNode(key, value);
             Length++;
-
-            var node = new BinaryTreeNode<K,V>(insertionSpot, null, null, key, value);
-
-            //The tree was empty
-            if (insertionSpot == null)
-            {
-                _root = node;
-            }
-            else if (key.CompareTo(insertionSpot.Key) < 0)
-            {
-                insertionSpot.Left = node;
-            }
-            else
-            {
-                insertionSpot.Right = node;
-            }
         }
 
         /// <summary>
@@ -114,7 +88,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="key">Key</param>
         /// <param name="value">Value to set</param>
-        public void Set(K key, V value)
+        protected void Set(K key, V value)
         {
             BinaryTreeNode<K,V> node = Find(key);
 
@@ -326,7 +300,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="value">Key to search</param>
         /// <returns>Found node or null</returns>
-        protected virtual BinaryTreeNode<K,V> Find(K key)
+        protected BinaryTreeNode<K,V> Find(K key)
         {
             BinaryTreeNode<K,V> cur = _root;
 
@@ -344,7 +318,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="firstNode">Starting node</param>
         /// <returns>Max node in the tree or null if the tree is empty</returns>
-        protected virtual BinaryTreeNode<K,V> Max(BinaryTreeNode<K,V> root)
+        protected BinaryTreeNode<K,V> Max(BinaryTreeNode<K,V> root)
         {
             BinaryTreeNode<K,V> cur = root;
 
@@ -374,6 +348,35 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             }
 
             return cur;
+        }
+
+        /// <summary>
+        /// Adds a new node to the tree and returns the inserted node.
+        /// </summary>
+        /// <returns>The inserted node</returns>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        protected BinaryTreeNode<K,V> AddNode(K key, V value)
+        {
+            //Find the correct spot to insert the new node
+            BinaryTreeNode<K,V> insertionSpot = FindNewInsertionSpot(key);
+            var newNode = new BinaryTreeNode<K,V>(insertionSpot, null, null, key, value);
+
+            //The tree was empty
+            if (insertionSpot == null)
+            {
+                _root = newNode;
+            }
+            else if (key.CompareTo(insertionSpot.Key) < 0)
+            {
+                insertionSpot.Left = newNode;
+            }
+            else
+            {
+                insertionSpot.Right = newNode;
+            }
+
+            return newNode;
         }
 
         /// <summary>
@@ -603,22 +606,20 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <returns>The node where to insert the new node or null if the tree is empty</returns>
         /// <param name="key">Key</param>
-        /// <param name="keyExists">Indicates if the key already exists</param>
-        protected BinaryTreeNode<K,V> FindNewInsertionSpot(K key, out bool keyExists)
+        /// <exception cref="ArgumentException">The key already exists</exception>
+        protected BinaryTreeNode<K,V> FindNewInsertionSpot(K key)
         {
             BinaryTreeNode<K,V> cur = _root, prev = null;
-            keyExists = false;
 
             //Find the correct spot to insert the new node
             while (cur != null)
             {
                 prev = cur;
 
-                //If the key already exists ovewrite it
+                //If the key already exists, throws an exception
                 if (cur.Key.CompareTo(key) == 0)
                 {
-                    keyExists = true;
-                    return cur;
+                    throw new ArgumentException($"The key {key} already exists!");
                 }
 
                 cur = (key.CompareTo(cur.Key) < 0) ? cur.Left : cur.Right;
