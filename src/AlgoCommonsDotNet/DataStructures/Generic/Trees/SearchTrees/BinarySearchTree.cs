@@ -78,7 +78,9 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// <param name="value">Value to add</param>
         public virtual void Add(K key, V value)
         {
-            AddNode(key, value);
+            var newNode = new BinaryTreeNode<K,V>(null, null, null, key, value);
+
+            newNode.Parent = AddNode(newNode);
             Length++;
         }
 
@@ -351,23 +353,22 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         }
 
         /// <summary>
-        /// Adds a new node to the tree and returns the inserted node.
+        /// Adds a new node to the tree and returns its parent
         /// </summary>
-        /// <returns>The inserted node</returns>
+        /// <returns>The parent of the inserted node or null if the tree was empty</returns>
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
-        protected BinaryTreeNode<K,V> AddNode(K key, V value)
+        protected BinaryTreeNode<K,V> AddNode(BinaryTreeNode<K,V> newNode)
         {
             //Find the correct spot to insert the new node
-            BinaryTreeNode<K,V> insertionSpot = FindNewInsertionSpot(key);
-            var newNode = new BinaryTreeNode<K,V>(insertionSpot, null, null, key, value);
+            BinaryTreeNode<K,V> insertionSpot = FindNewInsertionSpot(newNode.Key);
 
             //The tree was empty
             if (insertionSpot == null)
             {
                 _root = newNode;
             }
-            else if (key.CompareTo(insertionSpot.Key) < 0)
+            else if (newNode.Key.CompareTo(insertionSpot.Key) < 0)
             {
                 insertionSpot.Left = newNode;
             }
@@ -376,7 +377,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                 insertionSpot.Right = newNode;
             }
 
-            return newNode;
+            return insertionSpot;
         }
 
         /// <summary>

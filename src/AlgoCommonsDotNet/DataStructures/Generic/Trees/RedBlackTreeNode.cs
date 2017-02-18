@@ -3,21 +3,27 @@
 namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
 {
     /// <summary>
-    /// A Node for a Red black tree, it's a wrapper of a BinaryTreeNode
+    /// A Node for a Red Black Tree
     /// </summary>
-    public class RedBlackTreeNode <K,V> where K : IComparable<K>
+    public class RedBlackTreeNode <K,V> : BinaryTreeNode<K,V> where K : IComparable<K>
     {
-        public BinaryTreeNode<K,V> Data { get; set; }
-
         /// <summary>
-        /// False by default, new nodes should be red
+        /// Is a black or red node, false by default, new nodes should be red
         /// </summary>
-        public bool IsBlack { get; set; }
+        public NodeColor Color { get; set; }
 
-        public RedBlackTreeNode(BinaryTreeNode<K,V> data, bool isBlack = false)
+        public RedBlackTreeNode(BinaryTreeNode<K,V> parent, BinaryTreeNode<K,V> left, 
+            BinaryTreeNode<K,V> right, K key, V value, NodeColor color = NodeColor.Black) :
+        base(parent, left, right, key, value)
+
         {
-            Data = data;
-            IsBlack = isBlack;
+            Color = color;
         }
     }
+
+    /// <summary>
+    /// Red black tree node color
+    /// </summary>
+    public enum NodeColor { Black, Red };
 }
+

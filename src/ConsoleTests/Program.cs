@@ -26,6 +26,8 @@ namespace ConsoleTests
             bst.Add(18, 18);
             bst.Add(40, 40);
             bst.Add(80, 80);
+
+            bst.Remove(80);
         }
     }
 }

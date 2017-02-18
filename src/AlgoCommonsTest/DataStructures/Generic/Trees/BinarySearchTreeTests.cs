@@ -51,6 +51,7 @@ namespace AlgoCommonsTest
             Assert.AreEqual(BstLengthExpected, _bst.Length);
         }
 
+        [Test]
         public void ShouldReturnTheCorrectLengthAfterRemoving()
         {
             _bst.Remove(5);
@@ -58,9 +59,18 @@ namespace AlgoCommonsTest
         }
 
         [Test]
+        public void ShouldThrowExceptionWhenAddingExistingKey()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                _bst.Add(1, 1);
+            });
+        }
+
+        [Test]
         public void ShouldReturnTheCorrectLengthAfterAdding()
         {
-            _bst.Add(1, 1);
+            _bst.Add(1000, 1000);
             Assert.AreEqual(BstLengthExpected + 1, _bst.Length);
         }
 
