@@ -78,39 +78,33 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// <param name="value">Value to add</param>
         public virtual void Add(K key, V value)
         {
-            BinaryTreeNode<K,V> cur = _root, prev = null;
+            bool keyExists;
+            //Find the correct spot to insert the new node
+            BinaryTreeNode<K,V> insertionSpot = FindNewInsertionSpot(key, out keyExists);
+
+            //If the key already exists ovewrite it
+            if (keyExists)
+            {
+                insertionSpot.Value = value;
+                return;
+            }
 
             Length++;
 
-            //Find the correct spot to insert the new node
-            while (cur != null)
-            {
-                prev = cur;
-
-                //If the key already exists ovewrite it
-                if (cur.Key.CompareTo(key) == 0)
-                {
-                    cur.Value = value;
-                    return;
-                }
-
-                cur = (key.CompareTo(cur.Key) < 0) ? cur.Left : cur.Right;
-            }
-
-            var node = new BinaryTreeNode<K,V>(prev, null, null, key, value);
+            var node = new BinaryTreeNode<K,V>(insertionSpot, null, null, key, value);
 
             //The tree was empty
-            if (prev == null)
+            if (insertionSpot == null)
             {
                 _root = node;
             }
-            else if (key.CompareTo(prev.Key) < 0)
+            else if (key.CompareTo(insertionSpot.Key) < 0)
             {
-                prev.Left = node;
+                insertionSpot.Left = node;
             }
             else
             {
-                prev.Right = node;
+                insertionSpot.Right = node;
             }
         }
 
@@ -588,6 +582,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             }
         }
 
+        /// <summary>
+        /// Fixs the parent child to points to the child
+        /// </summary>
+        /// <param name="node">Node to fix its parent</param>
+        /// <param name="newNode">Node to compare the key</param>
         protected void FixParentChild(BinaryTreeNode<K,V> node, BinaryTreeNode<K,V> newNode)
         {
             //It's the root
@@ -607,6 +606,35 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                     node.Parent.Left = node;
                 }
             }
+        }
+
+        /// <summary>
+        /// Finds the insertion spot
+        /// </summary>
+        /// <returns>The node where to insert the new node or null if the tree is empty</returns>
+        /// <param name="key">Key</param>
+        /// <param name="keyExists">Indicates if the key already exists</param>
+        protected BinaryTreeNode<K,V> FindNewInsertionSpot(K key, out bool keyExists)
+        {
+            BinaryTreeNode<K,V> cur = _root, prev = null;
+            keyExists = false;
+
+            //Find the correct spot to insert the new node
+            while (cur != null)
+            {
+                prev = cur;
+
+                //If the key already exists ovewrite it
+                if (cur.Key.CompareTo(key) == 0)
+                {
+                    keyExists = true;
+                    return cur;
+                }
+
+                cur = (key.CompareTo(cur.Key) < 0) ? cur.Left : cur.Right;
+            }
+
+            return prev;
         }
     }
 }
