@@ -46,6 +46,7 @@
     <Compile Include="DataStructures\Generic\Trees\BinaryTreeNode.cs" />
     <Compile Include="DataStructures\Generic\Trees\RedBlackTreeNode.cs" />
     <Compile Include="DataStructures\Generic\Trees\SearchTrees\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\Generic\Trees\SearchTrees\RedBlackTree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -343,7 +343,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// </summary>
         /// <param name="value">Key to search</param>
         /// <returns>Found node or null</returns>
-        protected virtual BinaryTreeNode<K,V> Find(K key)
+        public virtual BinaryTreeNode<K,V> Find(K key)
         {
             BinaryTreeNode<K,V> cur = _root;
 
@@ -503,6 +503,122 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Rotates to the left
+        /// </summary>
+        /// <param name="middle">Middle node</param>
+        protected void RotateLeft(BinaryTreeNode<K,V> firstNode)
+        {
+            /*
+             * Sample with node (18)
+             * 
+             *        (17)
+             *       /    \
+             *    (15)    (18)
+             *               \
+             *               (25)
+             *              /    \
+             *            (23)  (40)
+             *
+             * After left rotation of (18)
+             * 
+             *        (17)
+             *       /    \
+             *    (15)    (25)
+             *           /    \
+             *        (18)    (40)
+             *           \
+             *          (23)
+             *
+             */
+
+            if (firstNode.Right != null)
+            {
+                BinaryTreeNode<K,V> rightChild = firstNode.Right;
+
+                rightChild.Parent = firstNode.Parent;
+                firstNode.Parent = firstNode.Right;
+                firstNode.Right = firstNode.Right.Left;
+                rightChild.Left = firstNode;
+            
+                //It's the root
+                if (rightChild.Parent == null)
+                {
+                    _root = rightChild;
+                    _root.Parent = null;
+                }
+                else
+                {
+                    if (rightChild.Parent.Right != null && rightChild.Parent.Right.Key.CompareTo(firstNode.Key) == 0)
+                    {
+                        rightChild.Parent.Right = rightChild;
+                    }
+                    else
+                    {
+                        rightChild.Parent.Left = rightChild;
+                    }
+
+                }
+            }
+        }
+        /// <summary>
+        /// Rotates to the right
+        /// </summary>
+        /// <param name="middle">Middle node</param>
+        protected void RotateRight(BinaryTreeNode<K,V> firstNode)
+        {
+           /*
+            * Sample with node (25)
+            * 
+            *        (17)
+            *       /    \
+            *    (15)    (25)
+            *           /    \
+            *        (18)    (40)
+            *           \
+            *          (23)
+            *
+            * After right rotation of (25)
+            * 
+            *        (17)
+            *       /    \
+            *    (15)    (18)
+            *               \
+            *               (25)
+            *              /    \
+            *            (23)  (40)
+            *
+            */
+
+            if (firstNode.Left != null)
+            {
+                BinaryTreeNode<K,V> leftChild = firstNode.Left;
+
+                leftChild.Parent = firstNode.Parent;
+                firstNode.Parent = firstNode.Left;
+                firstNode.Left = firstNode.Left.Right;
+                leftChild.Right = firstNode;
+
+                //It's the root
+                if (leftChild.Parent == null)
+                {
+                    _root = leftChild;
+                    _root.Parent = null;
+                }
+                else
+                {
+                    if (leftChild.Parent.Right != null && leftChild.Parent.Right.Key.CompareTo(firstNode.Key) == 0)
+                    {
+                        leftChild.Parent.Right = leftChild;
+                    }
+                    else
+                    {
+                        leftChild.Parent.Left = leftChild;
+                    }
+                }
+            }
         }
     }
 }
