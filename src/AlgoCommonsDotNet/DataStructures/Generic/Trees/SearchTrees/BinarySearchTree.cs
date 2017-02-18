@@ -207,41 +207,40 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                  *
                  *                    (7)
                  *                   /   \
-                *                 /       \
-                *               /           \
-                *             (5)           (12)
-                *            /   \        /      \
-                *          (3)   (6)    (9)      (15)
-                *         /   \        /   \    /    \
-                *       (1)   (4)    (8)  (10) (13) (17)
-                *                                  \
-                *                                  (14)
-                *
-                *  Replace the node to remove (12) with its successor, in this case
-                *  the successor of (12) is (13), and it's gonna be the last node
-                *  at the bottom left of the right child, so the successor won't have
-                *  a left child but it can have a right child, as we can see with (13)
-                *  or it could be a subtree aswell, so we need to make that the parent
-                *  of the successor -(15) in this case- points to its right child or subtree,
-                *  now (15).Left points to (14) and (14).Parent points to (15).
-                *
-                *  This works even if the node to delete is the root.
-                    *
-                    *                    (7)
-                    *                   /   \
-                    *                 /       \
-                    *               /           \
-                    *             (5)           (13)
-                    *            /   \        /      \
-                    *          (3)   (6)    (9)      (15)
-                    *         /   \        /   \    /    \
-                    *       (1)   (4)    (8)  (10)   \   (17)
-                    *                                  \
-                    *                                  (14)
-                    */
+                 *                 /       \
+                 *               /           \
+                 *             (5)           (12)
+                 *            /   \        /      \
+                 *          (3)   (6)    (9)      (15)
+                 *         /   \        /   \    /    \
+                 *       (1)   (4)    (8)  (10) (13) (17)
+                 *                                  \
+                 *                                  (14)
+                 *
+                 *  Replace the node to remove (12) with its successor, in this case
+                 *  the successor of (12) is (13), and it's gonna be the last node
+                 *  at the bottom left of the right child, so the successor won't have
+                 *  a left child but it can have a right child, as we can see with (13)
+                 *  or it could be a subtree aswell, so we need to make that the parent
+                 *  of the successor -(15) in this case- points to its right child or subtree,
+                 *  now (15).Left points to (14) and (14).Parent points to (15).
+                 *
+                 *  This works even if the node to delete is the root.
+                 *
+                 *                    (7)
+                 *                   /   \
+                 *                 /       \
+                 *               /           \
+                 *             (5)           (13)
+                 *            /   \        /      \
+                 *          (3)   (6)    (9)      (15)
+                 *         /   \        /   \    /    \
+                 *       (1)   (4)    (8)  (10)   \   (17)
+                 *                                 \
+                 *                                 (14)
+                 */
 
-                    //Fix the parent if the successor has a right node or subtree
-
+                //Fix the parent if the successor has a right node or subtree
                 if (successor.Right != null)
                 {
                     successor.Right.Parent = successor.Parent;
@@ -511,11 +510,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// <param name="middle">Middle node</param>
         protected void RotateLeft(BinaryTreeNode<K,V> firstNode)
         {
-            /*
-             * Sample with node (18)
-             * 
-             *        (17)
-             *       /    \
+           /*
+            * Sample with node (18)
+            * 
+            *        (17)
+            *       /    \
             *    (15)    (18)
             *               \
             *               (25)
@@ -546,13 +545,14 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
                 FixParentChild(rightChild, firstNode);
             }
         }
+
         /// <summary>
         /// Rotates to the right
         /// </summary>
         /// <param name="middle">Middle node</param>
         protected void RotateRight(BinaryTreeNode<K,V> firstNode)
         {
-            /*
+           /*
             * Sample with node (25)
             * 
             *        (17)
