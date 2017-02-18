@@ -637,25 +637,5 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         {
             return _root == node;
         }
-
-        /// <summary>
-        /// Checks if the given node is the parent's left child
-        /// </summary>
-        /// <returns>true if it's the left child otherwise false</returns>
-        /// <param name="node">Node.</param>
-        protected bool IsLeftChild(BinaryTreeNode<K,V> node)
-        {
-            return node != null && node.Parent != null && node.Parent.Left == node;
-        }
-
-        /// <summary>
-        /// Checks if the given node is the root of the tree
-        /// </summary>
-        /// <returns>true if it's the root otherwise false</returns>
-        /// <param name="node">Node.</param>
-        protected bool IsRightChild(BinaryTreeNode<K,V> node)
-        {
-            return node != null && node.Parent != null && node.Parent.Right == node;
-        }
     }
 }

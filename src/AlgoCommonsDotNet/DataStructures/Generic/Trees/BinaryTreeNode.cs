@@ -21,6 +21,24 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
             Key = key;
             Value = value;
         }
+
+        /// <summary>
+        /// Checks if the given node is the parent's left child
+        /// </summary>
+        /// <returns>true if it's the left child otherwise false</returns>
+        public bool IsLeftChild()
+        {
+            return Parent != null && Parent.Left == this;
+        }
+
+        /// <summary>
+        /// Checks if the given node is the root of the tree
+        /// </summary>
+        /// <returns>true if it's the root otherwise false</returns>
+        protected bool IsRightChild()
+        {
+            return Parent != null && Parent.Right == this;
+        }
     }
 }
  
