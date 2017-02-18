@@ -7,6 +7,7 @@ namespace AlgoCommonsDotNet
     {
         public RedBlackTree()
         {
+            
         }
     }
 }
