@@ -298,6 +298,30 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         }
 
         /// <summary>
+        /// In-order traversal
+        /// </summary>
+        /// <param name="callback">Callback</param>
+        public void InOrderTraversal(Action<K,V> callback)
+        {
+            InOrderTraversalRec(_root, callback);
+        }
+
+        /// <summary>
+        /// In-order traversal recursive
+        /// </summary>
+        /// <param name="node">Node</param>
+        /// <param name="callback">Callback</param>
+        protected void InOrderTraversalRec(BinaryTreeNode<K,V> node, Action<K,V> callback)
+        {
+            if (node != null)
+            {
+                InOrderTraversalRec(node.Left, callback);
+                callback(node.Key, node.Value);
+                InOrderTraversalRec(node.Right, callback);
+            }
+        }
+
+        /// <summary>
         /// Finds a node in the tree
         /// </summary>
         /// <param name="value">Key to search</param>

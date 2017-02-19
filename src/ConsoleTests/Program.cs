@@ -28,6 +28,11 @@ namespace ConsoleTests
             bst.Add(40, 40);
             bst.Add(80, 80);
 
+            bst.InOrderTraversal((k, v) =>
+            {
+                Console.Write("{0}, ", k);
+            });
+
             //bst.Remove(80);
             Console.WriteLine(bst.Successor(18));
         }
