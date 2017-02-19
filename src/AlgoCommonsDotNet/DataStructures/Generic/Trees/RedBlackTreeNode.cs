@@ -5,7 +5,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
     /// <summary>
     /// A Node for a Red Black Tree
     /// </summary>
-    public class RedBlackTreeNode <K,V> : BinaryTreeNode<K,V> where K : IComparable<K>
+    public class RedBlackTreeNode<K,V> : BinaryTreeNode<K,V> where K : IComparable<K>
     {
         /// <summary>
         /// Is a black or red node, false by default, new nodes should be red
@@ -13,7 +13,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
         public NodeColor Color { get; set; }
 
         public RedBlackTreeNode(BinaryTreeNode<K,V> parent, BinaryTreeNode<K,V> left, 
-            BinaryTreeNode<K,V> right, K key, V value, NodeColor color = NodeColor.Black) :
+            BinaryTreeNode<K,V> right, K key, V value, NodeColor color = NodeColor.Red) :
         base(parent, left, right, key, value)
 
         {

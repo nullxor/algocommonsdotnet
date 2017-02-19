@@ -7,9 +7,9 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
     /// </summary>
     public class BinaryTreeNode<K,V> where K : IComparable<K>
     {
-        public BinaryTreeNode<K,V> Parent { get; set; }
-        public BinaryTreeNode<K,V> Left { get; set; }
-        public BinaryTreeNode<K,V> Right { get; set; }
+        public virtual BinaryTreeNode<K,V> Parent { get; set; }
+        public virtual BinaryTreeNode<K,V> Left { get; set; }
+        public virtual BinaryTreeNode<K,V> Right { get; set; }
         public K Key { get; set; }
         public V Value { get; set; }
 
@@ -35,7 +35,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees
         /// Checks if the given node is the root of the tree
         /// </summary>
         /// <returns>true if it's the root otherwise false</returns>
-        protected bool IsRightChild()
+        public bool IsRightChild()
         {
             return Parent != null && Parent.Right == this;
         }

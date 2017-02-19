@@ -32,7 +32,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         /// <summary>
         /// Number of nodes in the tree
         /// </summary>
-        public long Length { get; private set; }
+        public long Length { get; protected set; }
 
         /// <summary>
         /// Root node of the tree
@@ -367,8 +367,10 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             if (insertionSpot == null)
             {
                 _root = newNode;
+                return insertionSpot;
             }
-            else if (newNode.Key.CompareTo(insertionSpot.Key) < 0)
+
+            if (newNode.Key.CompareTo(insertionSpot.Key) < 0)
             {
                 insertionSpot.Left = newNode;
             }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees;
+using AlgoCommonsDotNet.DataStructures.Generic.Trees;
 
 namespace ConsoleTests
 {
@@ -16,18 +17,19 @@ namespace ConsoleTests
     {
         static void Main(string[] args)
         {
-            BinarySearchTree<int, int> bst = new BinarySearchTree<int, int>();
+            RedBlackTree<int, int> bst = new RedBlackTree<int, int>();
 
             bst.Add(8, 8);
-            bst.Add(5, 5);
-            bst.Add(17, 17);
-            bst.Add(15, 15);
-            bst.Add(25, 25);
             bst.Add(18, 18);
+            bst.Add(5, 5);
+            bst.Add(15, 15);
+            bst.Add(17, 17);
+            bst.Add(25, 25);
             bst.Add(40, 40);
             bst.Add(80, 80);
 
-            bst.Remove(80);
+            //bst.Remove(80);
+            Console.WriteLine(bst.Successor(18));
         }
     }
 }
