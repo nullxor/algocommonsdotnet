@@ -288,7 +288,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
 
             var pred = PredecessorNode(node);
 
-            //There is no successor, the key is the max
+            //There is no predecessor, the key is the min
             if (pred == null)
             {
                 return new KeyValuePair<K, V>(node.Key, node.Value);
@@ -551,6 +551,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             {
                 BinaryTreeNode<K,V> rightChild = firstNode.Right;
 
+                if (rightChild.Left != null)
+                {
+                    rightChild.Left.Parent = firstNode;
+                }
+
                 rightChild.Parent = firstNode.Parent;
                 firstNode.Parent = firstNode.Right;
                 firstNode.Right = firstNode.Right.Left;
@@ -593,6 +598,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             {
                 BinaryTreeNode<K,V> leftChild = firstNode.Left;
 
+                if (leftChild.Right != null)
+                {
+                    leftChild.Right.Parent = firstNode;
+                }
+
                 leftChild.Parent = firstNode.Parent;
                 firstNode.Parent = firstNode.Left;
                 firstNode.Left = firstNode.Left.Right;
@@ -603,11 +613,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         }
 
         /// <summary>
-        /// Fixs the parent child to points to the child
+        /// Fixes the parent child
         /// </summary>
         /// <param name="node">Node to fix its parent</param>
-        /// <param name="newNode">Node to compare the key</param>
-        protected void FixParentChild(BinaryTreeNode<K,V> node, BinaryTreeNode<K,V> newNode)
+        /// <param name="newNode">Node to compare</param>
+        protected void FixParentChild(BinaryTreeNode<K,V> node, BinaryTreeNode<K,V> oldNode)
         {
             //It's the root
             if (node.Parent == null)
@@ -617,7 +627,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             }
             else
             {
-                if (node.Parent.Right != null && node.Parent.Right.Key.CompareTo(newNode.Key) == 0)
+                if (node.Parent.Right != null && node.Parent.Right.Key.CompareTo(oldNode.Key) == 0)
                 {
                     node.Parent.Right = node;
                 }

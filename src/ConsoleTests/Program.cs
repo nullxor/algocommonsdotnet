@@ -19,22 +19,28 @@ namespace ConsoleTests
         {
             RedBlackTree<int, int> bst = new RedBlackTree<int, int>();
 
-            bst.Add(8, 8);
+/*            bst.Add(8, 8);
             bst.Add(18, 18);
             bst.Add(5, 5);
             bst.Add(15, 15);
             bst.Add(17, 17);
             bst.Add(25, 25);
             bst.Add(40, 40);
-            bst.Add(80, 80);
+            bst.Add(80, 80);*/
 
-            bst.InOrderTraversal((k, v) =>
+            for (int i = 0; i <= 190; i++)
+            {
+                bst.Add(i, i);
+            }
+
+/*            bst.InOrderTraversal((k, v) =>
             {
                 Console.Write("{0}, ", k);
-            });
+            });*/
 
             //bst.Remove(80);
-            Console.WriteLine(bst.Successor(18));
+//            Console.WriteLine(bst.Successor(12));
+            Console.WriteLine(bst.Successor(150));
         }
     }
 }
