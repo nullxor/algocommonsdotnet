@@ -525,7 +525,7 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         protected void RotateLeft(BinaryTreeNode<K,V> firstNode)
         {
            /*
-            * Sample with node (18)
+            * Sample with node (17)
             * 
             *        (17)
             *       /    \
@@ -537,13 +537,11 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
             *
             * After left rotation of (18)
             * 
-            *        (17)
+            *        (18)
             *       /    \
-            *    (15)    (25)
-            *           /    \
-            *        (18)    (40)
-            *           \
-            *          (23)
+            *    (17)    (25)
+            *    /      /    \
+            *  (15)   (23)  (40)
             *
             */
 
@@ -572,17 +570,16 @@ namespace AlgoCommonsDotNet.DataStructures.Generic.Trees.SearchTrees
         protected void RotateRight(BinaryTreeNode<K,V> firstNode)
         {
            /*
-            * Sample with node (25)
+            * Sample with node (18)
             * 
-            *        (17)
+            *        (18)
             *       /    \
-            *    (15)    (25)
-            *           /    \
-            *        (18)    (40)
-            *           \
-            *          (23)
+            *    (17)    (25)
+            *    /      /    \
+            *  (15)   (23)  (40)
             *
-            * After right rotation of (25)
+            *
+            * After right rotation of (18)
             * 
             *        (17)
             *       /    \
